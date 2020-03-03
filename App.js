@@ -1,17 +1,19 @@
 import React from 'react';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import {AuthStack, TabNavigator} from "./Navigations";
+import {TabNavigator} from "./navigation/Navigations";
 import {StyleSheet, Text, View} from 'react-native';
 import * as Font from 'expo-font';
+import AuthStack from './navigation/AuthStack'
+
 
 
 const AppContainer = createAppContainer(createSwitchNavigator(
     {
-        Tab: TabNavigator,
         Auth: AuthStack,
+        Tab: TabNavigator,
     },
     {
-        initialRouteName: 'Auth',
+        initialRouteName: 'Tab',
     }
 ));
 
@@ -37,8 +39,6 @@ export default class App extends React.Component {
                 'Ionicons': require('@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf')
             });
             this.setState({fontLoaded: true});
-
-            console.log(this.state.fontLoaded)
         } catch (e) {
             console.warn(e)
         }

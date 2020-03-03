@@ -106,7 +106,7 @@ export default class RegisterPage3 extends Component {
                     </View>
                 </View>
                 <Text style={[authStyles.btn_register_txt,{color:'rgba(0,0,0,0.6)'}]}>آدرس را بر روی نقشه تنظیم کنید.</Text>
-                <MyMapView/>
+                <MyMapView width={width} height={height/4}/>
                 <View style={[authStyles.footer, {height: height / 8}]}>
                     <TouchableHighlight style={authStyles.btn_register} onPress={this._onRegisterPressButton}>
                         <Text style={authStyles.btn_register_txt}>ساخت حساب کاربری</Text>

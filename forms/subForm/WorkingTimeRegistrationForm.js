@@ -1,4 +1,4 @@
-import {height, width} from "../AuthStyles";
+import {height, width} from "../auth/AuthStyles";
 import React from 'react';
 import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native';
 import Modal from 'react-native-modal'
@@ -8,12 +8,9 @@ export default class WorkingTimeRegistrationForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            serviceCategoriesIsFocused: [false, false, false, false, false],
-            name: '',
             serviceTypes: []
         }
     }
-
 
     render() {
         return (
@@ -24,7 +21,7 @@ export default class WorkingTimeRegistrationForm extends React.Component {
                             {this.props.time}</Text>
                         <TouchableOpacity onPress={() => this.props.close()}>
                             <Image
-                                source={require('../../../assets/png/Group-2384.png')}
+                                source={require('../../assets/png/cancel.png')}
                                 style={{width: 40, height: 40}}
                             />
                         </TouchableOpacity>
@@ -52,7 +49,6 @@ export default class WorkingTimeRegistrationForm extends React.Component {
     }
 
     _confirmOnPress() {
-        let personnel = {};
         this.props.close()
     }
 }
@@ -98,4 +94,4 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'rgba(0,0,0,0.6)'
     },
-})
+});

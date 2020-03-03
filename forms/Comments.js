@@ -16,12 +16,12 @@ export default class Comments extends Component {
     static navigationOptions = ({navigation}) => {
         let rightBtn = <TouchableOpacity>
             <Image
-                source={require('../../assets/png/settings3x.png')}
+                source={require('../assets/png/settings3x.png')}
                 style={{width: 26, height: 26, marginRight: 15, tintColor: '#C8992E'}}/>
         </TouchableOpacity>
         let headerTitle =
             <Image
-                source={require('../../assets/png/Logo_new.png')}
+                source={require('../assets/png/Logo_new.png')}
                 style={{width: 60, height: 60, alignSelf: 'center', marginLeft: width / 2.4}}
             />
         return {

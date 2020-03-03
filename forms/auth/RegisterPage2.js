@@ -115,11 +115,6 @@ export default class RegisterClass2 extends Component {
 }
 
 const {width, height} = Dimensions.get("window");
-
-{
-    console.log("width: " + width + " height: " + height)
-}
-
 const styles = StyleSheet.create({
     txt: {
         color: 'rgba(0,0,0,0.6)',

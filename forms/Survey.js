@@ -10,7 +10,7 @@ export default class Survey extends React.Component {
             <View style={{flex: 1, alignItems: 'center'}}>
                 <View style={[styles.itemContainer, {height: height / 4}]}>
                     <Image
-                        source={require('../../assets/png/brownHairGirl.png')}
+                        source={require('../assets/png/brownHairGirl.png')}
                         style={{width: width / 4, height: width / 4, borderRadius: 50}}
                     />
                     <Text style={[styles.itemText, {fontSize: 18}]}>خانم سارا احمدی</Text>
@@ -62,7 +62,7 @@ export default class Survey extends React.Component {
                     padding: 15
                 }}>
                     <Image
-                        source={require('../../assets/png/edit.png')}
+                        source={require('../assets/png/edit.png')}
                         style={styles.icon}
                     />
                     <Text

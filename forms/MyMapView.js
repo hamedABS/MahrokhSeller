@@ -71,8 +71,8 @@ export default class MyMapView extends React.Component {
 
         if (locationIsLoad) {
             return (
-                <View style={{width: width, height: height / 4}}>
-                    <MapView style={{width: width, height: height / 4}}
+                <View style={{width: this.props.width, height: this.props.height}}>
+                    <MapView style={{width: this.props.width, height: this.props.height}}
                              region={this.state.region}
                              onRegionChange={(region) => this.onRegionChange(region)}
                              showsMyLocationButton={true}
@@ -104,7 +104,6 @@ export default class MyMapView extends React.Component {
                 latitudeDelta: 0.0005,
                 longitudeDelta: 0.0005,
         }
-        console.log(e.nativeEvent);
         let markers = [{
             coordinate: e.nativeEvent.coordinate,
             color: 'red'

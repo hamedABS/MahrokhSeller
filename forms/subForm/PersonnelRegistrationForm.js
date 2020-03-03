@@ -1,15 +1,12 @@
-import authStyles, {height, width} from "../AuthStyles";
+import authStyles, {height, width} from "../auth/AuthStyles";
 import React from 'react';
 import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native';
-import {categories} from '../SalonInfoRegistration'
 import Modal from 'react-native-modal'
 
 import * as DocumentPicker from 'expo-document-picker';
 
 
 export default class PersonnelRegistrationForm extends React.Component {
-
-
     constructor(props) {
         super(props);
         this.state = {
@@ -21,10 +18,9 @@ export default class PersonnelRegistrationForm extends React.Component {
         }
     }
 
-
     render() {
         let {personnelPhoto} = this.state;
-        let photo = personnelPhoto == '' ? require("../../../assets/png/woman.png") : {uri: personnelPhoto.uri}
+        let photo = personnelPhoto == '' ? require("../../assets/png/woman.png") : {uri: personnelPhoto.uri}
         return (
             <Modal isVisible={true}>
                 <View style={styles.modalContainer}>
@@ -33,7 +29,7 @@ export default class PersonnelRegistrationForm extends React.Component {
                             کارمندان</Text>
                         <TouchableOpacity onPress={() => this.props.close()}>
                             <Image
-                                source={require('../../../assets/png/Group-2384.png')}
+                                source={require('../../assets/png/cancel.png')}
                                 style={{width: 40, height: 40}}
                             />
                         </TouchableOpacity>
@@ -48,7 +44,7 @@ export default class PersonnelRegistrationForm extends React.Component {
                                 onPress={() => this._addPersonnelImage()}
                                 style={{width: 20, height: 20, position: 'absolute', marginTop: 80, marginLeft: 12}}>
                                 <Image
-                                    source={require('../../../assets/png/plus.png')}
+                                    source={require('../../assets/png/plus.png')}
                                     style={{width: 20, height: 20}}
                                 />
                             </TouchableOpacity>
@@ -56,7 +52,7 @@ export default class PersonnelRegistrationForm extends React.Component {
                         <View style={[authStyles.txt_input_container, {width: width / 1.1}]}>
                             <Image
                                 style={authStyles.txt_input_img}
-                                source={require('../../../assets/png/woman.png')}
+                                source={require('../../assets/png/woman.png')}
                             />
                             <TextInput
                                 style={[authStyles.txt_input, {width: width / 1.1}]}
@@ -68,7 +64,7 @@ export default class PersonnelRegistrationForm extends React.Component {
                         <View style={[authStyles.txt_input_container, {width: width / 1.1}]}>
                             <Image
                                 style={authStyles.txt_input_img}
-                                source={require('../../../assets/png/call.png')}
+                                source={require('../../assets/png/call.png')}
                             />
                             <TextInput
                                 style={[authStyles.txt_input, {width: width / 1.1}]}
@@ -140,6 +136,32 @@ export default class PersonnelRegistrationForm extends React.Component {
         this.props.close()
     }
 }
+
+const categories = [
+    {
+        name: 'زیبایی مو',
+        image: require('../../assets/png/hairDair.png')
+    },
+    {
+        name: 'درمانی مو',
+        image: require('../../assets/png/hairDair.png')
+    },
+    {
+        name: ' صورت',
+        image: require('../../assets/png/face.png')
+    },
+    {
+        name: ' ناخن',
+        image: require('../../assets/png/nail.png')
+    },
+    {
+        name: ' برداشتن مو',
+        image: require('../../assets/png/hairDair.png')
+    }, {
+        name: ' برداشتن مو',
+        image: require('../../assets/png/hairDair.png')
+    },
+]
 
 
 const styles = StyleSheet.create({

@@ -3,16 +3,13 @@ import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View,} from 'react-native';
 
 import * as DocumentPicker from 'expo-document-picker';
-import PersonnelRegistrationForm from "./sub_form/PersonnelRegistrationForm";
-import WorkingTimeRegistrationForm from "./sub_form/WorkingTimeRegistrationForm";
+import WorkingTimeRegistrationForm from "../subForm/WorkingTimeRegistrationForm";
+import SalonCategoryService from "../subForm/SalonCategoryService";
+import PersonnelImageAddComponent from "../subForm/PersonnelImageAddComponent";
 
 export default class SalonInfoRegistration extends React.Component {
-
-
     constructor() {
         super()
-
-        this._closePersonnelModal = this._closePersonnelModal.bind(this);
         this.state = {
             salonImages: [],
             profileImageUri: null,
@@ -31,7 +28,6 @@ export default class SalonInfoRegistration extends React.Component {
     render() {
         let {profileImageUri} = this.state;
         let photo = profileImageUri == null ? require("../../assets/png/woman.png") : {uri: profileImageUri}
-        let personnelBeforeSelection = require("../../assets/png/woman.png");
         let salonImageBeforeSelection = require("../../assets/png/graphic-design.png");
         let personnels = this.state.personnels;
 
@@ -60,7 +56,6 @@ export default class SalonInfoRegistration extends React.Component {
                                 let salonImage = this.state.salonImages[item];
                                 return (
                                     <View key={item}>
-
                                         <Image
                                             source={salonImage == null ? salonImageBeforeSelection : {uri: salonImage.uri}}
                                             style={{width: width / 5, height: width / 5, margin: 2,}}
@@ -97,73 +92,9 @@ export default class SalonInfoRegistration extends React.Component {
                     alignItems: 'flex-end'
                 }]}>
                     <Text style={[styles.text, {marginTop: 5, marginRight: 10}]}>خدمات</Text>
-                    <ScrollView horizontal
-                                showsHorizontalScrollIndicator={false}>
-                        {
-                            categories.map((item, index) => {
-                                return (
-                                    <TouchableOpacity key={index}
-                                                      onPress={() => this._selectService(index)}
-                                                      style={[styles.serviceCategoryTile, this.state.serviceCategoriesIsFocused[index] ? {borderColor: '#B08C3E'} : null]}>
-                                        <Image
-                                            source={item.image}
-                                            style={{width: 50, height: 50}}
-                                        />
-                                        <Text style={[styles.text, {fontSize: 15}]}>{item.name}</Text>
-                                    </TouchableOpacity>
-                                )
-                            })
-                        }
-                    </ScrollView>
+                    <SalonCategoryService/>
                 </View>
-                <View style={[styles.personnelView]}>
-                    <Text style={[styles.text, {marginTop: 5, margin: 10}]}>پرسنل</Text>
-                    <View style={{flexDirection: 'row-reverse', alignItems: 'center', justifyContent: 'center'}}>
-                        {
-                            personnels.map((item, index) => {
-                                return (
-                                    <View key={index}>
-                                        <TouchableOpacity
-                                            style={styles.personnelTile}
-                                            onPress={() => this._selectPersonnel(item)}>
-                                            <Image
-                                                source={item.photo != '' ? {uri: item.photo.uri} : personnelBeforeSelection}
-                                                style={[styles.personnelImage]}
-                                            />
-                                            <Text style={[styles.titlesBaseStyle, {fontSize: 12}]}>{item.name}</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity
-                                            style={{
-                                                width: 20,
-                                                height: 20,
-                                                position: 'absolute',
-                                                alignSelf: 'flex-start',
-                                                marginTop: 60,
-                                            }}
-                                            onPress={() => this._removeImage(item)}>
-                                            <Image
-                                                source={require('../../assets/png/minus.png')}
-                                                style={{width: 20, height: 20}}
-                                            />
-                                        </TouchableOpacity>
-                                    </View>
-
-                                )
-                            })
-                        }
-                        {this.state.personnelModalIsVisible ?
-                            <PersonnelRegistrationForm close={this._closePersonnelModal}
-                                                       addPeresonnel={this._addPersonnel}/> : null}
-
-                        <TouchableOpacity style={[styles.personnelTile, {justifyContent: 'center'}]}
-                                          onPress={() => this.setState({
-                                              personnelModalIsVisible: true
-                                          })}>
-                            <Image source={require("../../assets/png/plus.png")}
-                                   style={{width: 30, height: 30}}/>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                <PersonnelImageAddComponent/>
                 {
                     this._renderWorkingTimeModal()
                 }
@@ -186,7 +117,7 @@ export default class SalonInfoRegistration extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <TouchableHighlight style={authStyles.btn_register} onPress={this._onRegisterPressButton}>
+                <TouchableHighlight style={authStyles.btn_register} onPress={() => this._onPressButton()}>
                     <Text style={authStyles.btn_register_txt}>تایید اطلاعات</Text>
                 </TouchableHighlight>
             </View>
@@ -203,7 +134,6 @@ export default class SalonInfoRegistration extends React.Component {
     _onPressButton = () => {
         this.props.navigation.navigate('Tab');
     }
-
 
     _addImageOnPress = async () => {
         let count = this.state.uploadedImageCount
@@ -229,10 +159,6 @@ export default class SalonInfoRegistration extends React.Component {
         })
     }
 
-    _onRegisterPressButton = () => {
-        this.props.navigation.navigate('UploadDocuments');
-    }
-
     _removeImage(item) {
         let salonImages = this.state.salonImages;
         salonImages.splice(item, 1)
@@ -240,10 +166,9 @@ export default class SalonInfoRegistration extends React.Component {
     }
 
     _selectService(index) {
-        let serviceCategoriesIsFocused = this.state.serviceCategoriesIsFocused;
-        serviceCategoriesIsFocused[index] = !serviceCategoriesIsFocused[index]
+        this.state.serviceCategoriesIsFocused[index] = !this.state.serviceCategoriesIsFocused[index];
         this.setState({
-            serviceCategoriesIsFocused: serviceCategoriesIsFocused
+            serviceCategoriesIsFocused: this.state.serviceCategoriesIsFocused
         })
     }
 

@@ -15,18 +15,19 @@ import authStyles, {height, width} from './AuthStyles';
 export default class ContractPage extends Component {
 
     render() {
+        let dontShowBtn = this.props.navigation.getParam('dontShowConfirmBtn');
         return (
-            <View style={{alignItems: 'center',justifyContent:'center',alignContent:'center'}}>
-                <Text style={[styles.titleText,{marginTop:15}]}>متن قرار داد بین کایزن و ماهرخ</Text>
+            <View style={{alignItems: 'center', justifyContent: 'center', alignContent: 'center'}}>
+                <Text style={[styles.titleText, {marginTop: 15}]}>متن قرار داد بین کایزن و ماهرخ</Text>
                 <View style={{
                     height: height / 1.5,
-                    width:width/1.05,
+                    width: width / 1.05,
                     alignItems: 'center',
                     marginTop: 20,
                     padding: 10,
                     borderWidth: 1,
                     borderColor: '#B08C3E',
-                    borderRadius:5
+                    borderRadius: 5
                 }}>
                     <ScrollView>
 
@@ -40,9 +41,12 @@ export default class ContractPage extends Component {
                         })}
                     </ScrollView>
                 </View>
-                <TouchableHighlight style={authStyles.btn_register} onPress={this._onRegisterPressButton}>
-                    <Text style={authStyles.btn_register_txt}>موارد فوق را قبول دارم</Text>
-                </TouchableHighlight>
+                {
+                    dontShowBtn !== 'yes' ?
+                        <TouchableHighlight style={authStyles.btn_register} onPress={this._onRegisterPressButton}>
+                            <Text style={authStyles.btn_register_txt}>موارد فوق را قبول دارم</Text>
+                        </TouchableHighlight> : null
+                }
             </View>
         )
     }
