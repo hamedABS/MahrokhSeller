@@ -13,28 +13,7 @@ import {
 import authStyles from "./AuthStyles";
 
 
-export default class Login extends React.Component {
-    static navigationOptions = ({navigation}) => {
-        let headerBackImage = <Image source={require('../../assets/png/left.png')}
-                                     style={{width: 20, height: 20}}
-        />;
-        let headerTitle =
-            <Text style={{
-                textAlign: 'center',
-                fontFamily: 'IRANSansWeb',
-                width: width / 1.4,
-                fontSize: 16
-            }}>ورود</Text>
-        return {
-            headerBackImage: () => {
-                return headerBackImage
-            },
-            headerTitle: () => {
-                return headerTitle
-            },
-        };
-    };
-
+export default class ForgotPasswordPage extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -45,7 +24,7 @@ export default class Login extends React.Component {
     }
 
     _onPressButton = () => {
-        this.props.navigation.navigate('Tab');
+        this.props.navigation.navigate('ForgotPasswordPage2', {isForgotPage: true});
     }
 
     render() {
@@ -53,6 +32,10 @@ export default class Login extends React.Component {
             <KeyboardAvoidingView style={authStyles.container}
                                   behavior="padding" enabled>
                 <View style={styles.content}>
+                    <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 10, padding: 15}}>
+                        <Text style={[styles.txt, {fontSize: 16}]}>به منظور بازیابی رمز عبور خود شماره تماس خود را
+                            بصورت صحیح در کادر زیر وارد کنید</Text>
+                    </View>
                     <View style={styles.txt_input_container}>
                         <Image
                             style={authStyles.txt_input_img}
@@ -66,31 +49,13 @@ export default class Login extends React.Component {
                             value={this.state.phoneNumber}/>
 
                     </View>
-                    <View style={styles.txt_input_container}>
-                        <Image
-                            style={authStyles.txt_input_img}
-                            source={require('../../assets/png/locked.png')}
-                        />
-                        <TextInput
-                            style={authStyles.txt_input}
-                            placeholder='رمز عبور'
-                            secureTextEntry={true}
-                            autoCompleteType='off'
-                            onChangeText={(password) => this.setState({password})}
-                            value={this.state.password}/>
-
-                    </View>
                 </View>
                 <View style={authStyles.footer}>
                     <TouchableHighlight onPress={this._onPressButton}>
                         <View style={authStyles.btn_register}>
-                            <Text style={authStyles.btn_register_txt}>وارد شدن</Text>
+                            <Text style={authStyles.btn_register_txt}>تایید شماره تلفن</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableOpacity style={authStyles.rules_chk}
-                                      onPress={() => this.props.navigation.navigate("ForgotPasswordPage")}>
-                        <Text style={authStyles.rules_txt}>رمز عبور را فراموش کردم</Text>
-                    </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
         );
@@ -108,5 +73,10 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         height: 40,
         marginTop: 20,
+    },
+    txt: {
+        color: 'rgba(0,0,0,0.6)',
+        fontFamily: 'IRANSansWeb',
+        textAlign: 'center',
     },
 });

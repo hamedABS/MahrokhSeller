@@ -14,26 +14,6 @@ import authStyles from "./AuthStyles";
 
 export default class RegisterClass2 extends Component {
 
-    static navigationOptions = ({navigation}) => {
-        let headerBackImage = <Image source={require('../../assets/png/left.png')}
-                                     style={{width: 20, height: 20}}
-        />;
-        let headerTitle =
-            <Text style={{
-                textAlign: 'center',
-                fontFamily: 'IRANSansWeb',
-                width: width / 1.4,
-                fontSize: 16
-            }}>عضویت</Text>
-        return {
-            headerBackImage: () => {
-                return headerBackImage
-            },
-            headerTitle: () => {
-                return headerTitle
-            },
-        };
-    };
 
     constructor() {
         super()
@@ -85,7 +65,7 @@ export default class RegisterClass2 extends Component {
                         کد برایتان ارسال نشده، درخواست ارسال مجدد کد را ارسال کنید.</Text>
                 </View>
 
-                <View style={[authStyles.content,{alignItems:'center'}]}>
+                <View style={[authStyles.content, {alignItems: 'center'}]}>
                     <TextInput
                         style={styles.txt_input}
                         placeholder="کد"
@@ -104,9 +84,10 @@ export default class RegisterClass2 extends Component {
                             <Text style={authStyles.btn_register_txt}>تایید شماره تلفن</Text>
                         </View>
                     </TouchableHighlight>
-                    <View style={authStyles.rules_chk}>
-                        <Text style={[authStyles.rules_txt,{ color: '#B08C3E'}]}>ویرایش اطلاعات</Text>
-                    </View>
+                    {!this.props.navigation.getParam('isForgotPage') ? <View style={authStyles.rules_chk}>
+                        <Text style={[authStyles.rules_txt, {color: '#B08C3E'}]}>ویرایش اطلاعات</Text>
+                    </View> : null}
+
 
                 </View>
             </KeyboardAvoidingView>

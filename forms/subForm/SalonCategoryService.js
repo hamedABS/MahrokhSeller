@@ -17,16 +17,19 @@ export default class SalonCategoryService extends React.Component {
                         return (
                             <TouchableOpacity key={index}
                                               onPress={() => this._selectService(index)}
-                                              style={[styles.serviceCategoryTile, this.state.serviceCategoriesIsFocused[index] ? {borderColor: '#B08C3E'} : null]}>
+                                              style={[styles.serviceCategoryTile, this.state.serviceCategoriesIsFocused[index] ? {
+                                                  backgroundColor: '#B08C3E',
+                                                  borderWidth: 0
+                                              } : null]}>
                                 <Image
                                     source={item.image}
                                     style={[{
                                         width: 50,
                                         height: 50
-                                    }, this.state.serviceCategoriesIsFocused[index] ? {tintColor: '#B08C3E'} : null]}
+                                    }, this.state.serviceCategoriesIsFocused[index] ? {tintColor: 'white'} : null]}
                                 />
                                 <Text
-                                    style={[styles.text, {fontSize: 15}, this.state.serviceCategoriesIsFocused[index] ? {color: '#B08C3E'} : null]}>{item.name}</Text>
+                                    style={[styles.text, {fontSize: 15}, this.state.serviceCategoriesIsFocused[index] ? {color: 'white'} : null]}>{item.name}</Text>
                             </TouchableOpacity>
                         )
                     })
@@ -50,26 +53,32 @@ export default class SalonCategoryService extends React.Component {
 const {width, height} = Dimensions.get("window");
 const categories = [
     {
-        name: 'زیبایی مو',
+        name: 'زیبایی صورت',
         image: require('../../assets/png/hairDair.png')
+    },
+    {
+        name: 'درمانی پوست، زیبایی',
+        image: require('../../assets/png/hairDair.png')
+    },
+    {
+        name: 'ماساژ و اسپا',
+        image: require('../../assets/png/face.png')
+    },
+    {
+        name: 'عروس',
+        image: require('../../assets/png/nail.png')
     },
     {
         name: 'درمانی مو',
         image: require('../../assets/png/hairDair.png')
-    },
-    {
-        name: ' صورت',
-        image: require('../../assets/png/face.png')
-    },
-    {
-        name: ' ناخن',
-        image: require('../../assets/png/nail.png')
-    },
-    {
-        name: ' برداشتن مو',
-        image: require('../../assets/png/hairDair.png')
     }, {
         name: ' برداشتن مو',
+        image: require('../../assets/png/hairDair.png')
+    },, {
+        name: 'لیزر',
+        image: require('../../assets/png/hairDair.png')
+    },, {
+        name: 'ناخن',
         image: require('../../assets/png/hairDair.png')
     },
 ]
@@ -80,6 +89,7 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     serviceCategoryTile: {
+        backgroundColor: 'white',
         margin: 5,
         alignItems: 'center',
         justifyContent: 'space-around',

@@ -33,7 +33,7 @@ export default class DiscountManagement extends Component {
         dateIsValid: true
     }
 
-    deleteCard = (index) => {
+    deleteDiscount = (index) => {
         this.state.discounts.splice(index, 1)
         this.setState({
             discounts: this.state.discounts
@@ -46,7 +46,6 @@ export default class DiscountManagement extends Component {
                 <PersianCalendarPicker
                     style={{opacity: 0.5}}
                     enableDateChange={true}
-                    // selectedStartDate={selectedDate}
                     selectedDayColor='#e6b618'
                     isRTL={true}
                     onDateChange={(date) => this.onDateChange(date)}
@@ -94,7 +93,7 @@ export default class DiscountManagement extends Component {
                             return (
                                 <TouchableOpacity
                                     style={[styles.discountTile, discount.expired ? {} : null]}
-                                    onLongPress={() => this.deleteCard(index)}
+                                    onLongPress={() => this.deleteDiscount(index)}
                                     key={index}>
                                     <Text style={styles.titlesBaseStyle}>{discount.code}</Text>
                                     <Text style={styles.titlesBaseStyle}>٪{discount.percent}</Text>
@@ -236,6 +235,7 @@ export default class DiscountManagement extends Component {
     }
 }
 const {width, height} = Dimensions.get("window");
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

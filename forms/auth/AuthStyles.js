@@ -44,6 +44,7 @@ const authStyles = StyleSheet.create({
     },
     footer: {
         borderColor: 'grey',
+        justifyContent:'center',
         backgroundColor: '#E4DFE6',
         borderTopWidth: 1,
         height: height / 4.5,

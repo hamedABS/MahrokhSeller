@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-    Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View, Share, Linking
-} from 'react-native';
+import {Dimensions, Image, Linking, Share, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import ConfirmationDialog from '../subForm/ConfirmationDialog'
-import Modal from 'react-native-modal';
 
 
 export default class Setting extends React.Component {
@@ -28,15 +25,12 @@ export default class Setting extends React.Component {
         let salonOpenedPhoto = require("../../assets/png/open.png")
         let phoneNumber = '09178187580';
         return (
-            <View style={{flex: 1, alignItems: 'center'}}>
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                 <View style={{
                     height: height / 5,
-                    width: width / 2,
-                    flexDirection: 'row-reverse',
+                    width: width / 1.1,
                     alignItems: 'center',
-                    alignContent: 'center',
-                    justifyContent: 'space-around',
-                    alignSelf: 'flex-end',
+                    justifyContent: 'center',
                     marginLeft: 25,
                 }}>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('SalonInfoSetting', {
@@ -46,13 +40,13 @@ export default class Setting extends React.Component {
                     })}>
                         <Image
                             source={photo}
-                            style={{width: width / 4, height: width / 4, borderRadius: 50}}
+                            style={{width: width / 3, height: width / 3, borderRadius: 100}}
                         />
                     </TouchableOpacity>
                     <Text style={[{
                         fontFamily: 'IRANSansWebMedium',
                         fontSize: 18,
-                        color: '#323232'
+                        color: '#323232',
                     }]}>{this.state.name}</Text>
                 </View>
                 <View style={[styles.everyItem, {justifyContent: 'space-between'}]}>
@@ -91,7 +85,7 @@ export default class Setting extends React.Component {
                         style={styles.icon}/>
                     <Text style={styles.txt}>تغییر گذرواژه</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.everyItem} onPress={() => this._onShare()}>
+                <TouchableOpacity style={styles.everyItem} onPress={() => this.props.navigation.navigate("Report")}>
                     <Image
                         source={require('../../assets/png/growth.png')}
                         style={styles.icon}/>
@@ -117,14 +111,12 @@ export default class Setting extends React.Component {
                         source={this.state.salonIsOpened ? salonOpenedPhoto : salonClosedPhoto}
                         style={{width: 100, height: 100, marginTop: 20}}/>
                 </TouchableOpacity>
-
                 {
                     this.state.exitModalIsVisible ?
-                         <ConfirmationDialog message={'آیا مطمئن هستید می خواهید خارج شوید؟'}
-                                             doOnCancel={this._closeModal}
-                                             donOnConfirmation/>
-
-                        /*ConfirmationDialog('آیا مطمئن هستید میخواهدی خارج شوید؟', this._closeModal, null)*/ : null
+                        <ConfirmationDialog message={'آیا مطمئن هستید می خواهید خارج شوید؟'}
+                                            doOnCancel={this._closeModal}
+                                            donOnConfirmation={()=>this.props.navigation.navigate("Auth")}/>
+                        : null
                 }
             </View>
         )

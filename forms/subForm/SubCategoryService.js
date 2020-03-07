@@ -1,5 +1,5 @@
 import React from 'react';
-import {CheckBox, Dimensions, StyleSheet, Text, TextInput, View} from 'react-native';
+import {CheckBox, Dimensions, StyleSheet, Text, TextInput, View,ScrollView} from 'react-native';
 
 
 export default class SalonCategoryService extends React.Component {
@@ -8,45 +8,58 @@ export default class SalonCategoryService extends React.Component {
     }
 
     render() {
-        //subCategories should be sent into this component
-        let subCategories = [0, 1, 2, 3, 4, 5]
-        let categoryName = this.props.categoryName;
+
+
+        let category = this.props.category;
 
         return (
             <View style={{
-                width: width,
-                height: height / 2,
-                alignItems: 'flex-end',
-                backgroundColor: '#FFFFFF'
-            }}>
-                <Text style={[styles.text, {margin: 10}]}>{categoryName}</Text>
-                {
-                    subCategories.map((item, index) => {
-                        return (
-                            <View key={index} style={[styles.subCategory]}>
-                                <View style={{flexDirection: 'row-reverse'}}>
-                                    <CheckBox
-                                        value={this.state.serviceCategoriesIsFocused[index]}
-                                        onChange={() => this._selectSubCategory(index)}/>
-                                    <Text style={[styles.text, {fontSize: 16}]}>دسته بعدی نوع {index}</Text>
-                                </View>
+                    width: width,
+                    height: height / 1.7,
+                    alignItems: 'flex-end',
+                    backgroundColor: '#FFFFFF'
+                }}>
+                <Text style={[styles.txt, {margin: 10}]}>{category.name}</Text>
+                <ScrollView>
+                    {
+                        category.subCategories.map((item, index) => {
+                            return (
+                                <View key={index} style={[styles.subCategory]}>
+                                    <View style={{flexDirection: 'row-reverse'}}>
+                                        <CheckBox
+                                            value={this.state.serviceCategoriesIsFocused[index]}
+                                            onChange={() => this._selectSubCategory(index)}/>
+                                        <Text style={[styles.txt, {fontSize: 16}]}>{item}</Text>
+                                    </View>
 
-                                <View style={{
-                                    flexDirection: 'row-reverse',
-                                    alignContent: 'center',
-                                    alignItems: 'center',
-                                    alignSelf: 'flex-end'
-                                }}>
-                                    <Text style={styles.txt}>از</Text>
-                                    <TextInput style={styles.txtInput}/>
-                                    <Text style={styles.txt}>تا</Text>
-                                    <TextInput style={styles.txtInput}/>
+                                    <View style={{
+                                        flexDirection: 'row-reverse',
+                                        alignContent: 'center',
+                                        alignItems: 'center',
+                                        alignSelf:'center'
+                                    }}>
+                                        <Text style={styles.txt}>از: </Text>
+                                        <TextInput style={styles.txtInput}
+                                                   keyboardType={'numeric'}
+                                                   onChangeText={(value) => console.log(value)}/>
+                                        <Text style={styles.txt}>تا: </Text>
+                                        <TextInput style={styles.txtInput}
+                                                   keyboardType={'numeric'}
+                                                   onChangeText={(value) => console.log(value)}/>
+                                        <Text style={styles.txt}>زمان: </Text>
+                                        <TextInput style={styles.txtInput}
+                                                   keyboardType={'numeric'}
+                                                   onChangeText={(value) => console.log(value)}/>
+                                    </View>
                                 </View>
-                            </View>
-                        )
-                    })
-                }
+                            )
+                        })
+                    }
+                </ScrollView>
             </View>
+
+
+
         )
     }
 
@@ -61,18 +74,12 @@ export default class SalonCategoryService extends React.Component {
 
 const {width, height} = Dimensions.get("window");
 const styles = StyleSheet.create({
-    text: {
-        fontFamily: 'IRANSansFaNum',
-        textAlign: 'center',
-        fontSize: 18,
-        marginBottom: 2,
-    },
     subCategory: {
-        height: height / 18,
+        height: height / 10,
         width: width,
-        alignItems: 'center',
+        alignItems: 'flex-end',
         justifyContent: 'space-around',
-        flexDirection: 'row-reverse',
+        paddingRight:15
     },
     txtInput: {
         fontFamily: 'IRANSansFaNum',
@@ -89,6 +96,6 @@ const styles = StyleSheet.create({
         fontFamily: 'IRANSansFaNum',
         marginRight: 15,
         color: '#00000099',
-        margin: 5,
+       // margin: 5,
     },
 })

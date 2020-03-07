@@ -8,11 +8,6 @@ export default class WelcomePage extends Component {
         headerShown: false,
     };
 
-    constructor() {
-        super()
-        console.log("some thing happenning!!!!")
-    }
-
     _onRegisterPressButton = () => {
         this.props.navigation.navigate('RegisterPage');
     }

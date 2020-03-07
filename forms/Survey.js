@@ -1,6 +1,7 @@
 import React from 'react';
 import {Dimensions, Image, StyleSheet, Text, TextInput, View, TouchableOpacity, ScrollView} from 'react-native';
 import StarRating from 'react-native-star-rating'
+import authStyles from "./auth/AuthStyles";
 
 export default class Survey extends React.Component {
 
@@ -11,7 +12,7 @@ export default class Survey extends React.Component {
                 <View style={[styles.itemContainer, {height: height / 4}]}>
                     <Image
                         source={require('../assets/png/brownHairGirl.png')}
-                        style={{width: width / 4, height: width / 4, borderRadius: 50}}
+                        style={{width: width / 3, height: width / 3, borderRadius: 100}}
                     />
                     <Text style={[styles.itemText, {fontSize: 18}]}>خانم سارا احمدی</Text>
                 </View>
@@ -26,16 +27,16 @@ export default class Survey extends React.Component {
                             <View key={i} style={styles.questionItem}>
                                 <Text style={[styles.itemText, {fontSize: width / 28}]}>{item}</Text>
                                 <View style={{flexDirection: 'row-reverse'}}>
-                                    <TouchableOpacity
+                                    <View
                                         onPress={() => this.yesNoBtnPress(i, true)}
-                                        style={[styles.yesNoBtn, surveyResult[i] ? {borderColor: '#B08C3E'} : null, {marginLeft: 5}]}>
+                                        style={[styles.yesNoBtn, surveyResult[i] ? {backgroundColor: '#B08C3E'} : null, {marginLeft: 5}]}>
                                         <Text style={[styles.itemText, {fontSize: 14}]}>بله</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity
-                                        style={[styles.yesNoBtn, !surveyResult[i] ? {borderColor: '#B08C3E'} : null]}
+                                    </View>
+                                    <View
+                                        style={[styles.yesNoBtn, !surveyResult[i] ? {backgroundColor: '#B08C3E'} : null]}
                                         onPress={() => this.yesNoBtnPress(i, false)}>
                                         <Text style={[styles.itemText, {fontSize: 14}]}>خیر</Text>
-                                    </TouchableOpacity>
+                                    </View>
                                 </View>
                             </View>
                         )
@@ -69,10 +70,8 @@ export default class Survey extends React.Component {
                         style={[styles.itemText, {marginLeft: 10}]}>خیلی ممنون از خدمات خوبی که ارائه دادید.
                         تشکر ویژه از اپ زیبایی که شمارو معرفی کرد</Text>
                 </View>
-                <TouchableOpacity style={{marginTop: 15}} onPress={() => this.props.navigation.goBack()}>
-                    <View style={styles.btn}>
-                        <Text style={styles.btn_save_txt}>بسیار خب</Text>
-                    </View>
+                <TouchableOpacity style={[authStyles.btn_register,{marginTop: 15}]} onPress={() => this.props.navigation.goBack()}>
+                        <Text style={authStyles.btn_register_txt}>بسیار خب</Text>
                 </TouchableOpacity>
 
             </View>
@@ -111,18 +110,16 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     yesNoBtn: {
-        width: 40,
-        height: 25,
+        width: 60,
+        height: 45,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 1,
         borderRadius: 25,
-        borderColor: '#707070'
     },
     icon: {
         width: 20,
         height: 20,
-        tintColor: '#e6b618',
+        tintColor: '#B08C3E',
         alignSelf: 'flex-start',
         marginLeft: 10,
         marginRight: 10
@@ -135,20 +132,6 @@ const styles = StyleSheet.create({
         writingDirection: 'rtl',
         paddingRight: 10,
         alignSelf: 'flex-start'
-    },
-    btn_save_txt: {
-        fontFamily: 'IRANSansWeb',
-        fontSize: 18,
-        textAlign: 'center',
-        padding: 8,
-        color: 'white'
-    },
-    btn: {
-        width: width / 2,
-        height: height / 13,
-        alignItems: 'center',
-        backgroundColor: '#e6b618',
-        borderRadius: 50,
     },
 })
 

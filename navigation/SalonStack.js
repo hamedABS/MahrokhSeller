@@ -10,7 +10,58 @@ import ContractPage from "../forms/auth/ContractPage";
 import SalonInfoSetting from "../forms/salon/SalonInfoSetting";
 import ChangePasswordPage from "../forms/auth/ChangePasswordPage";
 import DiscountManagement from "../forms/salon/DiscountManagement";
+import Report from "../forms/finantial/Report";
+import {exp} from "react-native-reanimated";
 
+export const ReportPage = {
+    screen: Report,
+    navigationOptions: ({navigation}) => ({
+        headerTitle: () => HeaderTitle(`گزارش`),
+        headerBackImage: () => headerBackImag,
+    }),
+};
+export const SettingPage = {
+    screen: Setting,
+    navigationOptions: {
+        headerTitle: () => HeaderTitle(`تنظیمات`),
+        headerBackImage: () => headerBackImag,
+    },
+};
+export const CardManagementPage = {
+    screen: CardManagement,
+    navigationOptions: {
+        headerTitle: () => HeaderTitle(`معرفی حساب`),
+        headerBackImage: () => headerBackImag,
+    },
+};
+export const SalonInfoSettingPage = {
+    screen: SalonInfoSetting,
+    navigationOptions: {
+        headerTitle: () => HeaderTitle(`اطلاعات آرایشگاه`),
+        headerBackImage: () => headerBackImag,
+    },
+};
+export const Contract_Page = {
+    screen: ContractPage,
+    navigationOptions: ({navigation}) => ({
+        headerTitle: () => HeaderTitle(`قرارداد`),
+        headerBackImage: () => headerBackImag,
+    }),
+};
+export const ChangePassword_Page = {
+    screen: ChangePasswordPage,
+    navigationOptions: ({navigation}) => ({
+        headerTitle: () => HeaderTitle(`تغییر گذرواژه`),
+        headerBackImage: () => headerBackImag,
+    }),
+};
+export const DiscountManagementPage = {
+    screen: DiscountManagement,
+    navigationOptions: {
+        headerTitle: () => HeaderTitle(`کد تخفیف`),
+        headerBackImage: () => headerBackImag,
+    },
+};
 const SalonStack = createStackNavigator({
     Salon: {
         screen: Salon,
@@ -29,49 +80,13 @@ const SalonStack = createStackNavigator({
 
         })
     },
-    Setting: {
-        screen: Setting,
-        navigationOptions: {
-            headerTitle: () => HeaderTitle(`تنظیمات`),
-            headerBackImage: () => headerBackImag,
-        },
-    },
-    CardManagement: {
-        screen: CardManagement,
-        navigationOptions: {
-            headerTitle: () => HeaderTitle(`معرفی حساب`),
-            headerBackImage: () => headerBackImag,
-        },
-    },
-    DiscountManagement:{
-        screen:DiscountManagement,
-        navigationOptions: {
-            headerTitle: () => HeaderTitle(`کد تخفیف`),
-            headerBackImage: () => headerBackImag,
-        },
-    },
-    SalonInfoSetting: {
-        screen: SalonInfoSetting,
-        navigationOptions: {
-            headerTitle: () => HeaderTitle(`اطلاعات آرایشگاه`),
-            headerBackImage: () => headerBackImag,
-        },
-    },
-    ContractPage: {
-        screen: ContractPage,
-        navigationOptions: ({navigation}) => ({
-            headerTitle: () => HeaderTitle(`قرارداد`),
-            headerBackImage: () => headerBackImag,
-        }),
-    },
-    ChangePasswordPage: {
-        screen: ChangePasswordPage,
-        navigationOptions: ({navigation}) => ({
-            headerTitle: () => HeaderTitle(`تغییر گذرواژه`),
-            headerBackImage: () => headerBackImag,
-        }),
-
-    }
+    Setting: SettingPage,
+    CardManagement: CardManagementPage,
+    DiscountManagement: DiscountManagementPage,
+    SalonInfoSetting: SalonInfoSettingPage,
+    ContractPage: Contract_Page,
+    ChangePasswordPage: ChangePassword_Page,
+    Report: ReportPage,
 }, {
     initialRouteName: 'Salon',
 })

@@ -6,7 +6,7 @@ export const ServicesStack = createStackNavigator({
     Services: {
         screen: Services,
         navigationOptions: ({navigation}) => ({
-            headerTitle: () => HeaderTitle(`خدمات سالن`),
+            headerTitle: () => HeaderTitle(`خدمات سالن                  `),
         })
     },
 })

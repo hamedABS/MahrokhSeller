@@ -2,7 +2,6 @@ import {createBottomTabNavigator} from "react-navigation-tabs";
 import {I18nManager, Image, StyleSheet, Text} from "react-native";
 
 import Financial from "../forms/finantial/Financial";
-import Gallery from "../forms/gallery/Gallery";
 import Services from "../forms/services/Services";
 import Salon from "../forms/salon/Salon";
 import Reserves from "../forms/customer_reserves/Reserves";
@@ -27,7 +26,7 @@ export const TabNavigator = createBottomTabNavigator(
         Services: ServicesStack
     },
     {
-        initialRouteName: 'Salon',
+        initialRouteName: 'Reserves',
         defaultNavigationOptions: ({navigation}) => ({
             tabBarIcon: ({focused, horizontal, tintColor}) => {
                 const {routeName} = navigation.state;

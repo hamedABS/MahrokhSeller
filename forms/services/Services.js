@@ -18,11 +18,11 @@ export default class Services extends React.Component {
     constructor() {
         super();
         this.state = {
-            focusedCategory: ''
+            focusedCategory: '',
+            serviceCategoriesIsFocused: [false, false, false, false, false],
         }
         this.setFocusedCategory = this.setFocusedCategory.bind(this)
     }
-
 
 
     setFocusedCategory(category) {
@@ -33,14 +33,38 @@ export default class Services extends React.Component {
 
     render() {
         return (
-            <View style={{flex: 1, alignItems: 'center',justifyContent:'space-between'}}>
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'space-between'}}>
                 <View style={[styles.viewItemContainer, {
                     height: height / 6,
                 }]}>
-                    <SalonCategoryService setCategoryName={this.setFocusedCategory}/>
+                    <ScrollView horizontal
+                                showsHorizontalScrollIndicator={false}>
+                        {
+                            categories.map((item, index) => {
+                                return (
+                                    <TouchableOpacity key={index}
+                                                      onPress={() => this._selectService(item, index)}
+                                                      style={[styles.serviceCategoryTile, this.state.serviceCategoriesIsFocused[index] ? {
+                                                          backgroundColor: '#B08C3E',
+                                                          borderWidth: 0
+                                                      } : null]}>
+                                        <Image
+                                            source={item.image}
+                                            style={[{
+                                                width: 50,
+                                                height: 50
+                                            }, this.state.serviceCategoriesIsFocused[index] ? {tintColor: 'white'} : null]}
+                                        />
+                                        <Text
+                                            style={[styles.text, {fontSize: 15}, this.state.serviceCategoriesIsFocused[index] ? {color: 'white'} : null]}>{item.name}</Text>
+                                    </TouchableOpacity>
+                                )
+                            })
+                        }
+                    </ScrollView>
                 </View>
                 {this.state.focusedCategory != '' ?
-                    <SubCategoryService categoryName={this.state.focusedCategory}/> : null}
+                    <SubCategoryService category={this.state.focusedCategory}/> : null}
 
                 {this.state.focusedCategory != '' ?
                     <TouchableHighlight style={authStyles.btn_register} onPress={this._onRegisterPressButton}>
@@ -50,8 +74,58 @@ export default class Services extends React.Component {
         )
     }
 
+    _selectService(item, index) {
+        this.state.serviceCategoriesIsFocused[index] = !this.state.serviceCategoriesIsFocused[index];
+        this.setState({
+            serviceCategoriesIsFocused: this.state.serviceCategoriesIsFocused
+        })
+        if (this.state.serviceCategoriesIsFocused[index]) {
+            this.setState({focusedCategory: item})
+        }
+    }
+
 }
 
+
+const categories = [
+    {
+        name: 'زیبایی صورت',
+        image: require('../../assets/png/hairDair.png'),
+        subCategories: ['میکروبلیدینگ', 'میکرو پیگمنتیشن', 'ترمیم میکرو', 'خط جشم', 'بن مژه',]
+    },
+    {
+        name: 'پوست، زیبایی',
+        image: require('../../assets/png/hairDair.png'),
+        subCategories: ['درمان تخصصی دور چشم', 'درمان پوست جرب', 'درمان آکنه', 'آبرسانی', 'حلزون تراپی',]
+    },
+    {
+        name: 'ماساژ و اسپا',
+        image: require('../../assets/png/face.png'),
+        subCategories: ['ریلکسی', 'درمانی', 'لاغری', 'صورت', 'سر و گردن',]
+    },
+    {
+        name: 'عروس',
+        image: require('../../assets/png/nail.png'),
+        subCategories: ['پکیج عروس', 'میکاپ و مو', 'پکیج عقد', 'عروس vip', 'عقد vip',]
+    },
+    {
+        name: 'درمانی مو',
+        image: require('../../assets/png/hairDair.png'),
+        subCategories: ['ویتامینه مو', 'پروتئین تراپی', 'کراتین احیا', 'کراتین صافی', 'ریزش مو',]
+    }, {
+        name: ' برداشتن مو',
+        image: require('../../assets/png/hairDair.png'),
+        subCategories: ['خاویار تراپی', 'پروتيین تراپی', 'میراکل تراپی', 'فیلرمو', 'المنت مو',]
+    }, , {
+        name: 'لیزر',
+        image: require('../../assets/png/hairDair.png'),
+        subCategories: ['پیکیح صورت', 'پکیج زیربغل', 'تک جلسه بیکینی', 'بیکینی + خط مایو + خط باسن',]
+    }, , {
+        name: 'ناخن',
+        image: require('../../assets/png/hairDair.png'),
+        subCategories: ['زلیش دست', 'کروم', 'مانیکور و لاک', 'مانیکور روسی', 'کاژن دست',]
+    },
+]
 const {width, height} = Dimensions.get("window");
 const styles = StyleSheet.create({
     text: {
@@ -67,12 +141,16 @@ const styles = StyleSheet.create({
         borderBottomColor: 'rgba(0,0,0,0.6)',
         borderBottomWidth: 1,
     },
-    timeTile: {
-        width: width / 3 - 10,
-        height: height / 22,
-        borderRadius: 25,
-        borderWidth: 1,
-        borderColor: 'rgba(0,0,0,0.6)',
-        margin: 5
-    }
+
+    serviceCategoryTile: {
+        backgroundColor: 'white',
+        margin: 5,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        width: width / 4,
+        borderRadius: 10,
+        height: width / 4,
+        borderWidth: 1.5,
+        borderColor: 'rgba(0,0,0,0.6)'
+    },
 })
