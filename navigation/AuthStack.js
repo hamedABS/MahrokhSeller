@@ -52,7 +52,13 @@ const AuthStack = createStackNavigator({
     },
 
     Login: Login,
-    UploadDocuments: UploadDocuments,
+    UploadDocuments: {
+        screen: UploadDocuments,
+        navigationOptions:{
+            headerTitle: () => HeaderTitle(`ارسال مدارک`),
+            headerBackImage: () => headerBackImag,
+        },
+    },
 })
 
 export default AuthStack;

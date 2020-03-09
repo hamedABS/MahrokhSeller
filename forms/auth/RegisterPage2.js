@@ -50,7 +50,7 @@ export default class RegisterClass2 extends Component {
     }
 
     _onPressButton = () => {
-        this.props.navigation.navigate('Tab');
+        this.props.navigation.navigate('RegisterPage3');
     }
 
     render() {

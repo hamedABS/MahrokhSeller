@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Image, Dimensions, TouchableHighlight} from 'react-native';
+import {Dimensions, Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import authStyles from "./AuthStyles";
 
 export default class WelcomePage extends Component {
@@ -17,8 +17,7 @@ export default class WelcomePage extends Component {
     }
 
     render() {
-        console.log("rendering... ")
-        var image = require('../../assets/png/Logo_new.png')
+        var image = require('../../assets/png/logo.png')
         return (
             <View style={styles.container}>
                 <Image
@@ -27,7 +26,7 @@ export default class WelcomePage extends Component {
                 />
                 <TouchableHighlight onPress={this._onRegisterPressButton} underlayColor="white">
                     <View style={authStyles.btn_register}>
-                        <Text style={[authStyles.btn_register_txt,{fontSize:22}]}>ثبت نام</Text>
+                        <Text style={[authStyles.btn_register_txt, {fontSize: 22}]}>ثبت نام</Text>
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight onPress={this._onLoginButtonPress} underlayColor="white">
@@ -37,7 +36,6 @@ export default class WelcomePage extends Component {
                 </TouchableHighlight>
             </View>
         );
-        console.log("rendred ...")
     }
 }
 
@@ -46,8 +44,8 @@ const {width, height} = Dimensions.get("window");
 const styles = StyleSheet.create({
     container: {
         height: height,
-        width:width,
-        flex:1,
+        width: width,
+        flex: 1,
         alignItems: 'center'
     },
     title_text: {
@@ -78,7 +76,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         padding: 8,
         color: 'black',
-        fontFamily:'IRANSansWeb'
+        fontFamily: 'IRANSansWeb'
     }
 });
 

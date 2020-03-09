@@ -15,7 +15,7 @@ export default class SalonCategoryService extends React.Component {
         return (
             <View style={{
                     width: width,
-                    height: height / 1.7,
+                    height: height / 2,
                     alignItems: 'flex-end',
                     backgroundColor: '#FFFFFF'
                 }}>

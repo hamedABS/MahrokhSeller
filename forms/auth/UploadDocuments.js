@@ -23,7 +23,7 @@ export default class UploadDocuments extends React.Component {
                 fontFamily: 'IRANSansWeb',
                 width: width / 1.4,
                 fontSize: 16
-            }}>ارسال مدارک</Text>
+            }}></Text>
         return {
             headerBackImage: () => {
                 return headerBackImage
@@ -77,7 +77,7 @@ export default class UploadDocuments extends React.Component {
                         <Text style={styles.text}>صفحه اول شناسنامه</Text>
                     </TouchableOpacity>
                 </View>
-                <TouchableHighlight style={authStyles.btn_register} onPress={this._onRegisterPressButton}>
+                <TouchableHighlight style={authStyles.btn_register} onPress={() => this._onRegisterPressButton()}>
                     <Text style={authStyles.btn_register_txt}>ارسال مدارک</Text>
                 </TouchableHighlight>
             </View>
@@ -99,7 +99,7 @@ export default class UploadDocuments extends React.Component {
         console.log(result);
     }
     _onRegisterPressButton = () => {
-        this.props.navigation.navigate('UploadDocuments');
+        this.props.navigation.navigate('Tab');
     }
 }
 

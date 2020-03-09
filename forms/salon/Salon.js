@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     },
     workingTime: {
         width: width,
-        height: height / 4.5,
+        height: height / 4.1,
         borderBottomColor: "#70707080",
         borderBottomWidth: 1,
         alignItems: 'center'

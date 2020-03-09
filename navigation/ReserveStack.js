@@ -14,11 +14,12 @@ import {
     SettingPage
 } from "./SalonStack";
 import ReserveDetails from "../forms/customer_reserves/ReserveDetails";
+import {headerBackImag, HeaderTitle} from "./navigationConstants";
 
 
 let headerTitle =
     <Image
-        source={require('../assets/png/Logo_new.png')}
+        source={require('../assets/png/logo.png')}
         style={{width: 60, height: 60, alignSelf: 'center', marginLeft: Dimensions.get("window").width / 4}}
     />
 
@@ -40,10 +41,18 @@ const ReservesStack = createStackNavigator({
         })
     },
     Survey: {
-        screen: Survey
+        screen: Survey,
+        navigationOptions: {
+            headerTitle: () => HeaderTitle(`نظر سنجی`),
+            headerBackImage: () => headerBackImag,
+        },
     },
     ReserveDetails: {
-        screen: ReserveDetails
+        screen: ReserveDetails,
+        navigationOptions: {
+            headerTitle: () => HeaderTitle(`جزییات رزرو`),
+            headerBackImage: () => headerBackImag,
+        },
     },
     Setting: SettingPage,
     CardManagement: CardManagementPage,

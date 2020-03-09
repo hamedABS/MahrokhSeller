@@ -47,8 +47,8 @@ export default class MyMapView extends React.Component {
             region: {
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude,
-                latitudeDelta: 0.0005,
-                longitudeDelta: 0.0005,
+                latitudeDelta: 0.0009,
+                longitudeDelta: 0.009,
             }
         });
     };

@@ -1,6 +1,6 @@
-import authStyles, {height, width} from "../auth/AuthStyles";
+import {height, width} from "../auth/AuthStyles";
 import React from 'react';
-import {Image, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View,} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 
 import * as DocumentPicker from 'expo-document-picker';
 import Accordion from "react-native-collapsible/Accordion";

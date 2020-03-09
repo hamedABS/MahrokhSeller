@@ -11,10 +11,8 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/png/logo.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -24,7 +22,26 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.vista.mahrokhSellerApp",
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": [
+          "comgooglemaps"
+        ]
+      }
+    },
+    "android": {
+      "package": "com.vista.mahrokhSellerApp",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "com.android.launcher.permission.INSTALL_SHORTCUT"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBEkvy_tUg2F4by04QzWYXzR_gFpXqj5_Y"
+        }
+      }
     }
   }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
-import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View, TextInput} from 'react-native';
-import MyMapView from "../MyMapView";
+import {Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import Modal from 'react-native-modal'
 import authStyles from "../auth/AuthStyles";
 
@@ -18,27 +17,6 @@ export default class ReserveDetails extends React.Component {
         }
     }
 
-    static navigationOptions = ({navigation}) => {
-        let headerBackImage = <Image source={require('../../assets/png/left.png')}
-                                     style={{width: 20, height: 20}}
-        />;
-        let headerTitle =
-            <Text style={{
-                textAlign: 'center',
-                fontFamily: 'IRANSansWeb',
-                width: width / 1.3,
-                fontSize: 16
-            }}>جزییات رزرو</Text>
-        return {
-            headerBackImage: () => {
-                return headerBackImage
-            },
-            headerTitle: () => {
-                return headerTitle
-            },
-        };
-    };
-
 
     _renderCancelModal() {
         return <Modal isVisible={this.state.cancelModalIsVisible}>
@@ -46,7 +24,7 @@ export default class ReserveDetails extends React.Component {
                 <Text style={[styles.itemText, {marginTop: 10}]}>دلیل لغو رزرو چیست؟</Text>
                 <TextInput
                     style={[authStyles.txt_input, {
-                        height: height/10,
+                        height: height / 10,
                         width: width / 1.2,
                         borderRadius: 5,
                         borderWidth: 1,
@@ -56,7 +34,7 @@ export default class ReserveDetails extends React.Component {
                     onChangeText={(cancelReason) => this.setState({cancelReason})}
                     value={this.state.cancelReason}/>
 
-                <View style={{flexDirection: 'row-reverse', alignItems: 'center',marginBottom: 5}}>
+                <View style={{flexDirection: 'row-reverse', alignItems: 'center', marginBottom: 5}}>
                     <TouchableOpacity style={{padding: 5, backgroundColor: '#B08C3E', borderRadius: 5, marginLeft: 5}}
                                       onPress={() => this.setState({cancelModalIsVisible: false})}>
                         <Text style={styles.itemText}>لغو رزرو</Text>
@@ -83,7 +61,8 @@ export default class ReserveDetails extends React.Component {
                                 style={{width: width / 4, height: width / 4, borderRadius: 50}}
                             />
                         </TouchableOpacity>
-                        <Text style={[styles.itemText, {fontSize: 18,fontFamily: 'IRANSansWebMedium'}]}>سارا رضایی</Text>
+                        <Text style={[styles.itemText, {fontSize: 18, fontFamily: 'IRANSansWebMedium'}]}>سارا
+                            رضایی</Text>
                     </View>
 
                 </View>
@@ -101,8 +80,8 @@ export default class ReserveDetails extends React.Component {
                         <Text style={styles.itemText}> تخفیف: ۱۰۰۰۰ تومان </Text>
                         <Text style={[styles.itemText]}>پرداخت شده: ۸۰۰۰۰ تومان </Text>
                     </View>
-                    <View style={{width:"100%",height:'30%',alignItems: 'center', justifyContent: 'center'}}>
-                        <Text style={[styles.itemText, {color: '#B08C3E'}]}>مبلغ باقیمانده:  ۰ تومان </Text>
+                    <View style={{width: "100%", height: '30%', alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={[styles.itemText, {color: '#B08C3E'}]}>مبلغ باقیمانده: ۰ تومان </Text>
                     </View>
                 </View>
                 <TouchableOpacity style={authStyles.btn_register} onPress={() => this._onPressButton()}>
@@ -165,8 +144,8 @@ const styles = StyleSheet.create({
     },
     invoiceViewFirstPart: {
         width: "100%",
-        alignItems:'center',
-        justifyContent:'center',
+        alignItems: 'center',
+        justifyContent: 'center',
         height: "70%",
         borderBottomColor: 'rgba(0,0,0,0.46)',
         borderBottomWidth: 1
