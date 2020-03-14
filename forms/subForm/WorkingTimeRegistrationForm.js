@@ -22,7 +22,7 @@ export default class WorkingTimeRegistrationForm extends React.Component {
                         <TouchableOpacity onPress={() => this.props.close()}>
                             <Image
                                 source={require('../../assets/png/cancel.png')}
-                                style={{width: 40, height: 40}}
+                                style={{width: 30, height: 30}}
                             />
                         </TouchableOpacity>
                     </View>

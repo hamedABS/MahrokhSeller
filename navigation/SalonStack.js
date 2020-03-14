@@ -11,7 +11,6 @@ import SalonInfoSetting from "../forms/salon/SalonInfoSetting";
 import ChangePasswordPage from "../forms/auth/ChangePasswordPage";
 import DiscountManagement from "../forms/salon/DiscountManagement";
 import Report from "../forms/finantial/Report";
-import {exp} from "react-native-reanimated";
 
 export const ReportPage = {
     screen: Report,

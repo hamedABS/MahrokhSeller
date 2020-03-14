@@ -18,12 +18,12 @@ export default class EditSalonInfoForm extends React.Component {
         return (
             <Modal isVisible={true}>
                 <View style={styles.modalContainer}>
-                    <View style={[styles.viewItemContainer, {flexDirection: 'row-reverse'},]}>
+                    <View style={[styles.viewItemContainer, {flexDirection: 'row-reverse',height:'10%'},]}>
                         <Text style={[styles.text, {width: width / 1.4, marginRight: 20}]}>ویرایش اطلاعات</Text>
                         <TouchableOpacity onPress={() => this.props.close()}>
                             <Image
                                 source={require('../../assets/png/cancel.png')}
-                                style={{width: 40, height: 40}}
+                                style={{width: 30, height: 30}}
                             />
                         </TouchableOpacity>
                     </View>

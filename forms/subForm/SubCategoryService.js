@@ -19,7 +19,9 @@ export default class SalonCategoryService extends React.Component {
                     alignItems: 'flex-end',
                     backgroundColor: '#FFFFFF'
                 }}>
-                <Text style={[styles.txt, {margin: 10}]}>{category.name}</Text>
+                <View style={{width:width - 25,alignSelf:'center',  borderBottomWidth: 1, borderBottomColor: 'rgba(0,0,0,0.6)'}}>
+                    <Text style={[styles.txt, {margin: 10,fontFamily:'IRANSansWebMedium'}]}>{category.name}</Text>
+                </View>
                 <ScrollView>
                     {
                         category.subCategories.map((item, index) => {
@@ -29,7 +31,7 @@ export default class SalonCategoryService extends React.Component {
                                         <CheckBox
                                             value={this.state.serviceCategoriesIsFocused[index]}
                                             onChange={() => this._selectSubCategory(index)}/>
-                                        <Text style={[styles.txt, {fontSize: 16}]}>{item}</Text>
+                                        <Text style={[styles.txt]}>{item}</Text>
                                     </View>
 
                                     <View style={{
@@ -38,15 +40,15 @@ export default class SalonCategoryService extends React.Component {
                                         alignItems: 'center',
                                         alignSelf:'center'
                                     }}>
-                                        <Text style={styles.txt}>از: </Text>
+                                        <Text style={[styles.txt,{fontSize: 15}]}>از: </Text>
                                         <TextInput style={styles.txtInput}
                                                    keyboardType={'numeric'}
                                                    onChangeText={(value) => console.log(value)}/>
-                                        <Text style={styles.txt}>تا: </Text>
+                                        <Text style={[styles.txt,{fontSize: 15}]}>تا: </Text>
                                         <TextInput style={styles.txtInput}
                                                    keyboardType={'numeric'}
                                                    onChangeText={(value) => console.log(value)}/>
-                                        <Text style={styles.txt}>زمان: </Text>
+                                        <Text style={[styles.txt,{fontSize: 15}]}>زمان(به دقیقه): </Text>
                                         <TextInput style={styles.txtInput}
                                                    keyboardType={'numeric'}
                                                    onChangeText={(value) => console.log(value)}/>

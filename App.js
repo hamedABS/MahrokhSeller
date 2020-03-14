@@ -1,10 +1,9 @@
 import React from 'react';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {TabNavigator} from "./navigation/Navigations";
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import * as Font from 'expo-font';
 import AuthStack from './navigation/AuthStack'
-
 
 
 const AppContainer = createAppContainer(createSwitchNavigator(

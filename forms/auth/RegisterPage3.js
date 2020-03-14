@@ -1,7 +1,18 @@
 import React, {Component} from 'react';
-import {Dimensions, Image, KeyboardAvoidingView, Text, TextInput, TouchableHighlight, View,} from 'react-native';
+import {
+    Dimensions,
+    Image,
+    KeyboardAvoidingView,
+    Text,
+    TextInput,
+    TouchableHighlight,
+    TouchableOpacity,
+    View,
+} from 'react-native';
 import authStyles from './AuthStyles';
 import MyMapView from "../MyMapView";
+import Modal from 'react-native-modal'
+import {styles} from '../salon/Salon'
 
 
 export default class RegisterPage3 extends Component {
@@ -20,7 +31,9 @@ export default class RegisterPage3 extends Component {
             coords: [{
                 latitude: 35.726981,
                 longitude: 51.424158
-            }]
+            }],
+            editSalonIntroModalIsVisible: false,
+            salonIntro:'برای وارد کردن معرفی سالن لمس کنید.'
         }
     }
 
@@ -58,18 +71,20 @@ export default class RegisterPage3 extends Component {
                             value={this.state.phoneNumber}/>
 
                     </View>
-                    <View style={authStyles.txt_input_container}>
+                    <TouchableOpacity style={[authStyles.txt_input_container]}
+                                      onPress={() => this.setState({editSalonIntroModalIsVisible: true})}>
                         <Image
                             style={authStyles.txt_input_img}
                             source={require('../../assets/png/edit.png')}
                         />
-                        <TextInput
-                            style={authStyles.txt_input}
-                            placeholder='توضیحات فروشگاه'
-                            autoCapitalize='words'
-                            onChangeText={(description) => this.setState({description})}
-                            value={this.state.description}/>
-                    </View>
+                        <Text style={[{
+                            color: 'rgba(0,0,0,0.3)', fontFamily: 'IRANSansFaNum', fontSize: 15,
+                            textAlign: 'right',
+                            alignSelf: 'flex-start',
+                            width: width,
+                            paddingRight: 10
+                        }]}>{this.state.salonIntro}</Text>
+                    </TouchableOpacity>
 
                     <View style={authStyles.txt_input_container}>
                         <Image
@@ -79,13 +94,46 @@ export default class RegisterPage3 extends Component {
                         <TextInput
                             style={authStyles.txt_input}
                             placeholder='آدرس فروشگاه'
+                            numberOfLines={1}
                             autoCapitalize='words'
                             onChangeText={(email) => this.setState({email})}
                             value={this.state.email}/>
                     </View>
                 </View>
-                <Text style={[authStyles.btn_register_txt,{color:'rgba(0,0,0,0.6)'}]}>آدرس را بر روی نقشه تنظیم کنید.</Text>
-                <MyMapView width={width} height={height/4}/>
+                <Modal isVisible={this.state.editSalonIntroModalIsVisible}>
+                    <View style={styles.modalContainer}>
+                        <View style={[styles.viewItemContainer, {flexDirection: 'row-reverse'}]}>
+                            <Text style={[styles.modalTopHeader]}>معرفی سالن</Text>
+                            <TouchableOpacity onPress={() => this.setState({editSalonIntroModalIsVisible: false})}>
+                                <Image
+                                    source={require('../../assets/png/cancel.png')}
+                                    style={{width: 30, height: 30}}
+                                />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={[styles.viewItemContainer, {flexDirection: 'row-reverse'}]}>
+                        <Image
+                                source={require('../../assets/png/edit.png')}
+                                style={styles.icon}
+                            />
+                            <TextInput
+                                style={{width: width / 1.3, height: height / 4,textAlign:'right'}}
+                                numberOfLines={20}
+                                multiline = {true}
+                                placeholder={'متن معرفی سالن را اینجا وارد کنید.'}
+                                autoCapitalize='words'
+                                onChangeText={(description) => this.setState({description})}
+                                value={this.state.note}/>
+
+                        </View>
+                        <TouchableOpacity onPress={() => this.confirmOnPress()}>
+                            <Text style={[styles.titlesBaseStyle, {color: '#B08C3E'}]}>تایید</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
+                <Text style={[authStyles.btn_register_txt, {color: 'rgba(0,0,0,0.6)'}]}>آدرس را بر روی نقشه تنظیم
+                    کنید.</Text>
+                <MyMapView width={width} height={height / 4}/>
                 <View style={[authStyles.footer, {height: height / 8}]}>
                     <TouchableHighlight style={authStyles.btn_register} onPress={this._onRegisterPressButton}>
                         <Text style={authStyles.btn_register_txt}>ساخت حساب کاربری</Text>
@@ -93,6 +141,12 @@ export default class RegisterPage3 extends Component {
                 </View>
             </KeyboardAvoidingView>
         );
+    }
+    confirmOnPress() {
+        this.setState({
+            salonIntro: this.state.description,
+            editSalonIntroModalIsVisible: false
+        })
     }
 }
 

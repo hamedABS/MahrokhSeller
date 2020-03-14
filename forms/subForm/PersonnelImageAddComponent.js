@@ -1,6 +1,6 @@
-import authStyles, {height, width} from "../auth/AuthStyles";
+import {height, width} from "../auth/AuthStyles";
 import React from 'react';
-import {Image, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View,} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import PersonnelRegistrationForm from "../subForm/PersonnelRegistrationForm";
 
 
@@ -8,7 +8,8 @@ export default class PersonnelImageAddComponent extends React.Component {
 
     state = {
         personnels: [],
-        personnelModalIsVisible: false
+        personnelModalIsVisible: false,
+        personnelForEdit: null
     }
 
 
@@ -24,15 +25,17 @@ export default class PersonnelImageAddComponent extends React.Component {
                         personnels.map((item, index) => {
                             return (
                                 <View key={index}>
-                                    <View
-                                        style={styles.personnelTile}
-                                        /*onPress={() => this._selectPersonnel(item)}*/>
+                                    <TouchableOpacity onPress={() => this.setState({
+                                        personnelModalIsVisible: true,
+                                        personnelForEdit: item
+                                    })}
+                                                      style={styles.personnelTile}>
                                         <Image
                                             source={item.photo != '' ? {uri: item.photo.uri} : personnelBeforeSelection}
                                             style={[styles.personnelImage]}
                                         />
                                         <Text style={[styles.text, {fontSize: 12}]}>{item.name}</Text>
-                                    </View>
+                                    </TouchableOpacity>
                                     <TouchableOpacity
                                         style={{
                                             width: 20,
@@ -54,7 +57,8 @@ export default class PersonnelImageAddComponent extends React.Component {
                     }
                     {this.state.personnelModalIsVisible ?
                         <PersonnelRegistrationForm close={this._closePersonnelModal}
-                                                   addPeresonnel={this._addPersonnel}/> : null}
+                                                   addPeresonnel={this._addPersonnel}
+                                                   personnelForEdit={this.state.personnelForEdit}/> : null}
 
                     <TouchableOpacity style={[styles.personnelTile, {justifyContent: 'center'}]}
                                       onPress={() => this.setState({
@@ -71,7 +75,13 @@ export default class PersonnelImageAddComponent extends React.Component {
 
     _addPersonnel = async (personnel) => {
         let personnels = this.state.personnels;
-        personnels.push(personnel)
+        console.log(personnel)
+        if (personnel.id === null) {
+            personnel.id = personnels.length
+            personnels.push(personnel)
+        } else {
+            personnels[personnel.id] = personnel
+        }
         this.setState({
             personnels: personnels
         })
@@ -86,7 +96,8 @@ export default class PersonnelImageAddComponent extends React.Component {
 
     _closePersonnelModal = () => {
         this.setState({
-            personnelModalIsVisible: false
+            personnelModalIsVisible: false,
+            personnelForEdit:null
         })
     }
 

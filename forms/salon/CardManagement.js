@@ -63,7 +63,7 @@ export default class CardManagement extends Component {
                                 <TouchableOpacity onPress={() => this.setState({modalIsVisible: false})}>
                                     <Image
                                         source={require('../../assets/png/cancel.png')}
-                                        style={{width: 40, height: 40}}
+                                        style={{width: 30, height: 30}}
                                     />
                                 </TouchableOpacity>
                             </View>
@@ -178,6 +178,8 @@ const styles = StyleSheet.create({
     },
     cardTile: {
         height: height / 13,
+        width: width - 15,
+
         borderRadius: 5,
         flexDirection: 'row-reverse',
         marginBottom: 10,

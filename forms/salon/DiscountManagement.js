@@ -123,7 +123,7 @@ export default class DiscountManagement extends Component {
                                 <TouchableOpacity onPress={() => this.setState({modalIsVisible: false})}>
                                     <Image
                                         source={require('../../assets/png/cancel.png')}
-                                        style={{width: 40, height: 40}}
+                                        style={{width: 30, height: 30}}
                                     />
                                 </TouchableOpacity>
                             </View>
@@ -287,7 +287,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
         width: width / 1.1,
-        // height: height / 3,
         minHeight: height / 3,
         borderRadius: 10
     },

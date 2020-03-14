@@ -4,7 +4,7 @@ import Financial from "../forms/finantial/Financial";
 import {headerBackImag, HeaderTitle} from "./navigationConstants";
 import {Image, TouchableOpacity} from "react-native";
 import CashOut from "../forms/finantial/CashOut";
-import {CardManagementPage, SettingPage} from "./SalonStack";
+import {CardManagementPage, ReportPage, SettingPage} from "./SalonStack";
 import CardManagement from "../forms/salon/CardManagement";
 
 const FinancialStack = createStackNavigator({
@@ -33,6 +33,7 @@ const FinancialStack = createStackNavigator({
     },
     Setting: SettingPage,
     CardManagement: CardManagementPage,
+    Report: ReportPage,
 });
 
 FinancialStack.navigationOptions = ({navigation}) => {

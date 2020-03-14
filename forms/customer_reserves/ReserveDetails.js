@@ -67,9 +67,9 @@ export default class ReserveDetails extends React.Component {
 
                 </View>
                 <View style={[styles.itemContainer, {padding: 10, height: height / 8}]}>
-                    <Text style={styles.itemText}>کاشت ناخن۹۸/۱۰/۲۷ ساعت 8 صبح</Text>
-                    <Text style={styles.itemText}>خدامت مو ۹۸/۱۰/۲۶ ساعت 10 صبح</Text>
-                    <Text style={styles.itemText}>کاشت ناخن۹۸/۱۰/۲۸ ساعت 12 صبح</Text>
+                    <Text style={styles.itemText}>کاشت ناخن۹۸/۱۰/۲۷ ساعت 8 خانم حاتمی</Text>
+                    <Text style={styles.itemText}>خدامت مو ۹۸/۱۰/۲۶ ساعت 10 خانم رضایی</Text>
+                    <Text style={styles.itemText}>کاشت ناخن۹۸/۱۰/۲۸ ساعت 15 خانم سبحانی</Text>
                 </View>
                 <View style={[styles.itemContainer, {height: height / 11}]}>
                     <Text style={styles.itemText}>صورت حساب: پرداخت شده است</Text>
@@ -84,7 +84,7 @@ export default class ReserveDetails extends React.Component {
                         <Text style={[styles.itemText, {color: '#B08C3E'}]}>مبلغ باقیمانده: ۰ تومان </Text>
                     </View>
                 </View>
-                <TouchableOpacity style={authStyles.btn_register} onPress={() => this._onPressButton()}>
+                <TouchableOpacity style={authStyles.btn_register} onPress={() => this.props.navigation.goBack()}>
                     <Text style={authStyles.btn_register_txt}>تکمیل فرایند رزرو</Text>
                 </TouchableOpacity>
             </View>

@@ -9,7 +9,7 @@ export default class Reserve extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.topView}>
+                <TouchableOpacity style={styles.topView} onPress={()=>this.props.navigation.navigate('Report')}>
                     <View style={styles.topViewItem}>
                         <Text style={[styles.titlesBaseStyle, {fontSize: 20}]}>۱۵۲</Text>
                         <Text style={styles.titlesBaseStyle}>مشتریان این ماه</Text>
@@ -22,7 +22,7 @@ export default class Reserve extends Component {
                         <Text style={[styles.titlesBaseStyle, {color: 'red', fontSize: 20}]}>۱۰</Text>
                         <Text style={styles.titlesBaseStyle}>مشتریان کنسلی</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
                 <View style={styles.optionsContainer}>
                     <TouchableOpacity onPress={() => this.setState({name: "inProgress"})}
                                       style={[styles.chooseOption, this.state.name == "inProgress" ? {backgroundColor: '#B08C3E'} : null]}>

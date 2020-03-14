@@ -11,7 +11,7 @@ export default class Financial extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.topView}>
+                <TouchableOpacity style={styles.topView} onPress={() => this.props.navigation.navigate('Report')}>
                     <View style={styles.topViewItem}>
                         <Text style={[styles.titlesBaseStyle, {fontSize: 20}]}>۱۵۲</Text>
                         <Text style={styles.titlesBaseStyle}>مشتریان این ماه</Text>
@@ -24,7 +24,7 @@ export default class Financial extends Component {
                         <Text style={[styles.titlesBaseStyle, {color: 'green', fontSize: 20}]}>۴۰۰۰۰۰</Text>
                         <Text style={styles.titlesBaseStyle}>اعتبار کیف پول</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
                 <View style={styles.optionsContainer}>
                     <TouchableOpacity onPress={() => this.setState({name: "inProgress"})}
                                       style={[styles.chooseOption, this.state.name == "inProgress" ? {backgroundColor: '#B08C3E'} : null]}>
@@ -45,17 +45,28 @@ export default class Financial extends Component {
                 </View>
 
                 <Modal isVisible={this.state.detailsModalIsVisible}>
-                    <TouchableOpacity style={styles.invoiceView}
-                                      onPress={() => this.setState({detailsModalIsVisible: false})}>
+                    <View style={styles.invoiceView}
+                    >
+                        <View style={[styles.viewItemContainer, {flexDirection: 'row-reverse'}]}>
+                            <Text style={[styles.modalTopHeader]}>جزییات پرداخت</Text>
+                            <TouchableOpacity onPress={() => this.setState({detailsModalIsVisible: false})}>
+                                <Image
+                                    source={require('../../assets/png/cancel.png')}
+                                    style={{width: 30, height: 30}}
+                                />
+                            </TouchableOpacity>
+                        </View>
                         <View style={styles.invoiceViewFirstPart}>
-                            <Text style={styles.itemText}> مجموع سبد خرید: ۹۰۰۰۰ </Text>
+                            <Text style={styles.itemText}>خدمات مو: خانم صالحی</Text>
+                            <Text style={styles.itemText}>کاشت ناخن: خانم افضلی</Text>
+                            <Text style={styles.itemText}> مجموع سبد خرید: ۹۰۰۰۰ تومان</Text>
                             <Text style={styles.itemText}> تخفیف: ۱۰۰۰۰ تومان </Text>
                             <Text style={[styles.itemText]}>پرداخت شده: ۸۰۰۰۰ تومان </Text>
                         </View>
                         <View style={{width: "100%", height: '30%', alignItems: 'center', justifyContent: 'center'}}>
                             <Text style={[styles.itemText, {color: '#B08C3E'}]}>مبلغ باقیمانده: ۰ تومان </Text>
                         </View>
-                    </TouchableOpacity>
+                    </View>
                 </Modal>
                 <Table headerTitles={headers} transactions={transactions}
                        openModal={() => this.setState({detailsModalIsVisible: true})}/>
@@ -185,10 +196,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
     },
+    viewItemContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: "20%",
+        width: width / 1.1,
+        borderBottomColor: 'rgba(0,0,0,0.6)',
+        borderBottomWidth: 1,
+    },
     invoiceView: {
-        alignSelf:'center',
-        width: width/1.1,
-        height: height / 4.7,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        width: width / 1.1,
+        height: height / 3,
         marginTop: 20,
         borderRadius: 5,
         shadowColor: "#000",
@@ -207,6 +227,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#00000099',
     },
+    modalTopHeader: {
+        fontSize: 15,
+        fontFamily: 'IRANSansWebMedium',
+        textAlign: 'center',
+        color: '#00000099',
+        width: width / 1.4,
+        marginRight: 20,
+    }
 })
 
 const transactions = [

@@ -1,9 +1,10 @@
 import authStyles, {height, width} from "../auth/AuthStyles";
 import React from 'react';
-import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native';
+import {Image, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View,} from 'react-native';
 import Modal from 'react-native-modal'
 
 import * as DocumentPicker from 'expo-document-picker';
+import getBoundingClientRect from "react-native-web/dist/modules/getBoundingClientRect";
 
 
 export default class PersonnelRegistrationForm extends React.Component {
@@ -11,10 +12,21 @@ export default class PersonnelRegistrationForm extends React.Component {
         super(props);
         this.state = {
             serviceCategoriesIsFocused: [false, false, false, false, false],
+            id: null,
             personnelPhoto: '',
             phoneNumber: '',
             name: '',
-            serviceTypes: []
+            serviceTypes: [],
+            personnelIsActive: true
+        }
+        let personnelForEdit = this.props.personnelForEdit;
+        if (personnelForEdit !== null) {
+            this.state.id = personnelForEdit.id;
+            this.state.personnelPhoto = personnelForEdit.photo;
+            this.state.phoneNumber = personnelForEdit.phoneNumber;
+            this.state.name = personnelForEdit.name;
+            this.state.serviceTypes = personnelForEdit.expertness;
+            this.state.personnelIsActive = personnelForEdit.isActive;
         }
     }
 
@@ -24,31 +36,37 @@ export default class PersonnelRegistrationForm extends React.Component {
         return (
             <Modal isVisible={true}>
                 <View style={styles.modalContainer}>
-                    <View style={[styles.viewItemContainer, {flexDirection: 'row-reverse'}]}>
-                        <Text style={[styles.text, {marginTop: 10, width: width / 1.4, marginRight: 20}]}>ثبت
+                    <View style={[styles.viewItemContainer, {
+                        flexDirection: 'row-reverse', height: "10%",
+                    }]}>
+                        <Switch onValueChange={(value) => this.setState({personnelIsActive: value})}
+                                value={this.state.personnelIsActive}
+                                thumbColor='#B08C3E'
+                                trackColor={{false: 'rgba(145,145,145,0.44)', true: '#F7DDA4'}}/>
+
+                        <Text style={[styles.text, {width: width / 1.5}]}>ثبت
                             کارمندان</Text>
                         <TouchableOpacity onPress={() => this.props.close()}>
                             <Image
                                 source={require('../../assets/png/cancel.png')}
-                                style={{width: 40, height: 40}}
+                                style={{width: 30, height: 30}}
                             />
                         </TouchableOpacity>
                     </View>
                     <View style={{alignItems: 'center'}}>
                         <Text style={styles.text}>افزودن عکس کارمند</Text>
-                        <View>
+                        <TouchableOpacity  onPress={() => this._addPersonnelImage()}s>
                             <Image
                                 source={photo}
                                 style={{width: width / 4, height: width / 4, borderRadius: 50}}/>
-                            <TouchableOpacity
-                                onPress={() => this._addPersonnelImage()}
+                            <View
                                 style={{width: 20, height: 20, position: 'absolute', marginTop: 80, marginLeft: 12}}>
                                 <Image
                                     source={require('../../assets/png/plus.png')}
                                     style={{width: 20, height: 20}}
                                 />
-                            </TouchableOpacity>
-                        </View>
+                            </View>
+                        </TouchableOpacity>
                         <View style={[authStyles.txt_input_container, {width: width / 1.1}]}>
                             <Image
                                 style={authStyles.txt_input_img}
@@ -87,7 +105,7 @@ export default class PersonnelRegistrationForm extends React.Component {
                                     return (
                                         <TouchableOpacity key={index}
                                                           onPress={() => this._selectService(index)}
-                                                          style={[styles.serviceType, this.state.serviceCategoriesIsFocused[index] ? {borderColor: '#B08C3E'} : null]}>
+                                                          style={[styles.serviceType, this.state.serviceCategoriesIsFocused[index] ? {backgroundColor: '#B08C3E',borderWidth: 0} : null]}>
                                             <Text style={styles.text}>{item.name}</Text>
                                         </TouchableOpacity>
                                     )
@@ -128,10 +146,12 @@ export default class PersonnelRegistrationForm extends React.Component {
 
     _confirmOnPress() {
         let personnel = {};
+        personnel.id = this.state.id;
         personnel.photo = this.state.personnelPhoto;
         personnel.name = this.state.name;
         personnel.phoneNumber = this.state.phoneNumber;
         personnel.expertness = this.state.serviceTypes;
+        personnel.isActive = this.state.personnelIsActive;
         this.props.addPeresonnel(personnel)
         this.props.close()
     }
